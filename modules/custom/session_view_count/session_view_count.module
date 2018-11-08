@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * @file
+ * Contains session_view_count.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function session_view_count_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the session_view_count module.
+    case 'help.page.session_view_count':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('My Awesome Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+
+
+
+function briavers_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+
+  // Only do the extra work if the component is configured to be displayed.
+  // This assumes a 'mymodule_addition' extra field has been defined for the
+  // entity bundle in hook_entity_extra_field_info().
+  
+    $session = \Drupal::request()->getSession();
+    $timesWatched = $session->get('timesWatched', []);
+    if(!is_array($timesWatched)) $timesWatched = array();
+    
+    // Drupal::messenger()->deleteAll();
+  
+
+    $id = (int) $entity->id();
+    if(!isset($timesWatched[$id])){
+
+      //$timesWatched[$id()];
+      // var_dump($timesWatched[$entity->id()] ); die();
+      $timesWatched[$id] = 1;
+      \Drupal::messenger()->addMessage('this is the first time you see this');
+  
+  
+    } else{
+      // var_dump($timesWatched[$entity->id()] ); die();
+
+      //$session->set('timesWatched', $timesWatched + 1);
+      $timesWatched[$entity->id()]++;
+      \Drupal::messenger()->addMessage('this is the ' . $timesWatched[$entity->id()] . ' time you see this' );
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+/**
+ * Implements hook_theme().
+ */
+function session_view_count_theme() {
+  return [
+    'session_view_count' => [
+      'render element' => 'children',
+    ],
+  ];
+}

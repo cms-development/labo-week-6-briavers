@@ -1,0 +1,30 @@
+add best friends entities:
+  title: 'Create new Best Friends entities'
+
+administer best friends entities:
+  title: 'Administer Best Friends entities'
+  description: 'Allow to access the administration form to configure Best Friends entities.'
+  restrict access: true
+
+delete best friends entities:
+  title: 'Delete Best Friends entities'
+
+edit best friends entities:
+  title: 'Edit Best Friends entities'
+
+view published best friends entities:
+  title: 'View published Best Friends entities'
+
+view unpublished best friends entities:
+  title: 'View unpublished Best Friends entities'
+
+view all best friends revisions:
+  title: 'View all Best Friends revisions'
+
+revert all best friends revisions:
+  title: 'Revert all Best Friends revisions'
+  description: 'Role requires permission <em>view Best Friends revisions</em> and <em>edit rights</em> for best friends entities in question or <em>administer best friends entities</em>.'
+
+delete all best friends revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Best Friends revisions</em> and <em>delete rights</em> for best friends entities in question or <em>administer best friends entities</em>.'

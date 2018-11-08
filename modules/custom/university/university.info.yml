@@ -1,0 +1,5 @@
+name: 'University'
+type: module
+description: 'Labo week 6'
+core: 8.x
+package: 'Custom'

@@ -1,0 +1,56 @@
+<?php
+
+/**
+ * @file
+ * Contains university.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function university_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the university module.
+    case 'help.page.university':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Labo week 6') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+/* 
+function briavers_student_insert(Drupal\Core\Entity\EntityInterface $entity) {
+  
+  die(var_dump($entity->get('field_courses')));
+  $conn = \Drupal::database();
+
+  $conn->insert('course__field_students')->fields(
+  array(
+    'bundle' => 'course',
+    'field_students_target_id' => $entity->id(),
+    'entity_id' => '',
+    'revision_id' => '',
+  )
+)->execute();
+
+
+} */
+
+
+
+
+
+/**
+ * Implements hook_theme().
+ */
+function university_theme() {
+  return [
+    'university' => [
+      'render element' => 'children',
+    ],
+  ];
+}

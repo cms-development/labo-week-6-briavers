@@ -1,0 +1,14 @@
+
+# Best Friends menu items definition
+entity.friends.collection:
+  title: 'Best Friends list'
+  route_name: entity.friends.collection
+  description: 'List Best Friends entities'
+  parent: system.admin_structure
+  weight: 100
+
+friends.admin.structure.settings:
+  title: 'Best Friends settings'
+  description: 'Configure Best Friends entities'
+  route_name: friends.settings
+  parent: system.admin_structure

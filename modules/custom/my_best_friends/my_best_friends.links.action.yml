@@ -1,0 +1,5 @@
+entity.friends.add_form:
+  route_name: entity.friends.add_form
+  title: 'Add Best Friends'
+  appears_on:
+    - entity.friends.collection

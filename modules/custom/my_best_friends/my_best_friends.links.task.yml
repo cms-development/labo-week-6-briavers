@@ -1,0 +1,27 @@
+# Best Friends routing definition
+friends.settings_tab:
+  route_name: friends.settings
+  title: 'Settings'
+  base_route: friends.settings
+
+entity.friends.canonical:
+  route_name: entity.friends.canonical
+  base_route: entity.friends.canonical
+  title: 'View'
+
+entity.friends.edit_form:
+  route_name: entity.friends.edit_form
+  base_route: entity.friends.canonical
+  title: 'Edit'
+
+entity.friends.version_history:
+  route_name: entity.friends.version_history
+  base_route: entity.friends.canonical
+  title: 'Revisions'
+
+entity.friends.delete_form:
+  route_name:  entity.friends.delete_form
+  base_route:  entity.friends.canonical
+  title: Delete
+  weight: 10
+

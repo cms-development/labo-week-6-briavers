@@ -1,0 +1,60 @@
+<?php
+
+/**
+ * @file
+ * Contains briavers.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function briavers_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the briavers module.
+    case 'help.page.briavers':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Module for testing purpuses') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+
+
+
+
+function briavers_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+ 
+ //form variabelen dumpen
+ // kint($form);
+ if($form_id == 'user_login_form'){
+    $form['name']['#description'] = t('im looking for my name');
+ }  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Implements hook_theme().
+ */
+function briavers_theme() {
+  return [
+    'briavers' => [
+      'render element' => 'children',
+    ],
+  ];
+}
