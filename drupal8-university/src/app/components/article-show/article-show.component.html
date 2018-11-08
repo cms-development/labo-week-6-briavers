@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row" *ngIf="article">
+    <div class="col-12">
+<h1>The Title: {{article.data.attributes.title}} </h1>
+<h3>created: {{ date }}</h3>
+    </div>
+    <div class="col-sm-12 col-md-9 col-lg-6">
+<p [innerHTML]='article.data.attributes.body.value'></p>
+
+    </div>
+    <div class="col-sm-12 col-md-3 col-lg-6">
+      <div class="row">
+        <div class="col-6">
+          <img src="http://localhost:8080/{{article.included[0].attributes.url}}" alt="" class="full-width">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="row" *ngIf="!article">
+    <h1>The article was not yet found but we keep looking
+      
+    </h1>
+  </div>
+</div>

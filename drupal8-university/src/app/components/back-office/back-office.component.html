@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <h2>All Articles</h2>
+    </div>
+
+
+    <div class="row" *ngIf="articles">
+      <table class="table table-hover">
+        <tr>
+          <th scope="col"> Tittel </th>
+          <th scope="col"> content </th>
+          <th scope="col"> created at </th>
+          <th scope="col"> options </th>
+        </tr>
+        <tr *ngFor="let article of articles.data">
+          <td> {{ article.attributes.title }}</td>
+          <td>{{ article.attributes.body.value |slice:0:150 }}</td>
+          <td> {{ article.attributes.created  }} </td>
+<td> <i class="material-icons" (click)="delete(article.id)"> delete_forever </i> <i class="material-icons" (click)="edit(article.id)">
+    edit </i></td>
+        </tr>
+      </table>
+    </div>
+    
+    <div *ngIf="!articles">
+      <h1> there was a huge error</h1>
+<em>or just no articles yet, please wait until te request is completed</em>
+    </div>
+
+
+  </div>
+</div>
