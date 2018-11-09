@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
+import { HttpCallService } from 'src/app/services/http-call.service';
+import { HttpHeaders } from '@angular/common/http';
+import Axios from 'axios';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +13,7 @@ export class HomeComponent implements OnInit {
 
   public students;
 
+  private httpCall: HttpCallService;
   constructor() { }
 
   ngOnInit() {
@@ -45,6 +49,30 @@ export class HomeComponent implements OnInit {
     var myDate = new Date(time * 1000);
     return (myDate.toUTCString());
   }
+
+  delete(id) {
+    const token = localStorage.getItem("token")
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    };
+
+
+    Axios.delete(`http://localhost:8088/jsonapi/student/student/${id}`, { headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+      .then(function (response) {
+        console.log(response)
+        location.reload(); 
+      })
+
+      .catch(function (error) {
+        console.log('this is the error', error)
+      });
+  }
+
+
+
 }
 
 

@@ -12,6 +12,7 @@
           <th scope="col"> Created at </th>
           <th scope="col"> Students </th>
           <th scope="col"> Lector </th>
+          <th scope="col"> options </th>
         </tr>
         <tr *ngFor="let course of courses.data">
           <td> {{ course.attributes.name }}</td>
@@ -26,6 +27,7 @@
 <li>{{getLector(course.relationships.field_instructor.data.id)}}</li>
             </ul>
           </td>
+<td> <i class="material-icons" (click)="delete(course.attributes.uuid)"> delete_forever </i> </td>
         </tr>
       </table>
     </div>

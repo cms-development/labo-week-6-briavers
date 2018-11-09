@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Axios from 'axios';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-lectors',
@@ -45,6 +46,26 @@ export class LectorsComponent implements OnInit {
     var myDate = new Date(time * 1000);
     return (myDate.toUTCString());
   }
+  delete(id) {
+    const token = localStorage.getItem("token")
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    };
+
+    Axios.delete(`http://localhost:8088/jsonapi/instructor/instructor/${id}`, { headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+      .then(function (response) {
+  console.log(response)
+        location.reload(); 
+})
+
+  .catch(function (error) {
+    console.log('this is the error', error)
+  });
+  }
+
 }
 
 
