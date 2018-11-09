@@ -25,21 +25,27 @@
         <li class="nav-item">
           <a class="nav-link" href="/lectors"> lectors  </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/student/create" *ngIf="loggedIn"> create student</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/course/create" *ngIf="loggedIn"> create course</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/lector/create" *ngIf="loggedIn"> create lector</a>
+        </li>
         
         <li class="nav-item">
           <a class="nav-link" href="/login" *ngIf="!loggedIn">login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/" *ngIf="loggedIn"  (click)="logout($event)"> logout</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="/backOffice" *ngIf="loggedIn"> backoffice</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/student/create" *ngIf="loggedIn"> create student</a>
+          <a class="nav-link" href="/" *ngIf="loggedIn"  (click)="logout($event)"> logout</a>
         </li>
-
-      </ul>
-    </div>
+        
+    </ul>
+  </div>
   </div>
 </nav>

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpCallService } from 'src/app/services/http-call.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import Axios from 'axios';
 import { HttpHeaders } from '@angular/common/http';
+import { HttpCallService } from 'src/app/services/http-call.service';
 
 
 
@@ -23,6 +23,7 @@ export class CreateComponent implements OnInit {
   public error;
   public token;
   public id = this.route.snapshot.paramMap.get('id');
+  public courses;
   loading = false;
   submitted = false;
   constructor(
@@ -34,11 +35,12 @@ export class CreateComponent implements OnInit {
 
   ngOnInit() {
     localStorage.getItem('token') ? this.token = localStorage.getItem('token') : this.router.navigateByUrl('/login')
-
+    this.getCourses()
     
     this.editForm = this.formBuilder.group({
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
+      courses: [[], Validators.required],
     });
   }
 
@@ -47,6 +49,7 @@ export class CreateComponent implements OnInit {
 
 
   onSubmit() {
+    console.log(this.f.courses)
     let that = this;
     const httpOptions = {
       headers: new HttpHeaders({
@@ -55,25 +58,18 @@ export class CreateComponent implements OnInit {
         'Authorization': `Bearer ${this.token}`
       })
     };
-    let data = 
-    {
-      "data": {
-        "type": "student--student",
+    let data = {
+      "data" : {
+          "type": "student--student",
           "attributes": {
-          "name": this.f.last_name.value,
-            "field_fist_name": this.f.first_name.value
-        }
-
-      },
-      "relations": {
-        "field_courses" : {
-          "data" : {
-            "type" : "course--course",
-              "id" : "d398e79d-d019-4daf-bf8c-3c69cfb1e27b"
+            "name": this.f.last_name.value,
+            "field_fist_name": this.f.first_name.value,
+            "field_courses": this.f.courses.value,
           }
-        }
+          }
+  
       }
-    }
+    
 
 
 
@@ -82,7 +78,7 @@ export class CreateComponent implements OnInit {
     Axios.post('http://localhost:8088/jsonapi/student/student', data, { headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token') }` }})
       .then(function (response) {
         console.log(response)
-        //that.router.navigateByUrl('/students')
+        that.router.navigateByUrl('/students')
       })
 
       .catch(function (error) {
@@ -96,13 +92,19 @@ export class CreateComponent implements OnInit {
     return formData;
   }
 
-
-
-
-
-
-
+  getCourses(){
+    let that = this
+    Axios.get('http://localhost:8088/jsonapi/course/course')
+      .then(function (response) {
+        that.courses = response.data;
+        console.log(that.courses)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 }
+  
 
 
 

@@ -1,0 +1,40 @@
+<h2>create Course</h2>
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+  <div class="form-group">
+    <label for="name">name</label>
+    <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+      <div *ngIf="f.name.errors.required">last name is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="academic_institution">Academic Institution</label>
+    <input type="text" formControlName="academic_institution" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.academic_institution.errors }" />
+    <div *ngIf="submitted && f.academic_institution.errors" class="invalid-feedback">
+      <div *ngIf="f.academic_institution.errors.required">first name is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="students">students (max 30) </label>
+    <select multiple class="form-control" id="students" formControlName="students">
+      <option *ngFor="let student of students.data" [value]="student.attributes.id">{{ student.attributes.name }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+<label for="lector">lector  </label>
+<select class="form-control" id="lector" formControlName="lector">
+<option *ngFor="let lector of lectors.data" [value]="lector.attributes.id">{{ lector.attributes.name }}</option>
+    </select>
+  </div>
+
+
+
+  <div class="form-group">
+    <button [disabled]="loading" class="btn btn-primary">create</button>
+    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+  </div>
+</form>

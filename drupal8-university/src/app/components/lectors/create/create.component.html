@@ -1,0 +1,51 @@
+<h2>create Lector</h2>
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+  <div class="form-group">
+    <label for="last_name">last_name</label>
+    <input type="text" formControlName="last_name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" />
+    <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+      <div *ngIf="f.last_name.errors.required">last name is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="first_name">first_name</label>
+    <input type="text" formControlName="first_name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }" />
+    <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+      <div *ngIf="f.first_name.errors.required">first name is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="academic_title">Academic Title</label>
+    <select multiple class="form-control" id="academic_title" formControlName="academic_title">
+      <option [value]="title_5-0">A.D.</option>
+      <option [value]="title_6-0">B.</option>
+      <option [value]="title_6-1">B.A.</option>
+      <option [value]="title_6-2">B..Sc.</option>
+      <option [value]="title_7-0">M.</option>
+      <option [value]="title_7-1">M.A.</option>
+      <option [value]="title_7-2">M.Sc.</option>
+      <option [value]="title_8-0">Ph.D.</option>
+    </select>
+  </div>
+
+<div class="form-group">
+  <label for="academic_rank">Academic Title</label>
+<select class="form-control" id="academic_rank" formControlName="academic_rank">
+    <option value="rank_0">Visiting Professor</option>
+    <option value="rank_1">Assistant Lecturer</option>
+    <option value="rank_2">Senior Assistant Lecturer</option>
+    <option value="rank_3">Lecturer</option>
+    <option value="rank_4">Senior Lecturer</option>
+  </select>
+</div>
+
+
+
+  <div class="form-group">
+    <button [disabled]="loading" class="btn btn-primary">create</button>
+    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+  </div>
+</form>
