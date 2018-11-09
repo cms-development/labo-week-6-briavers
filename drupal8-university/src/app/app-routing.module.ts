@@ -14,7 +14,7 @@ import { CreateComponent as lectorCreate } from './components/lectors/create/cre
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: LoginComponent
   },
   {
     path: 'home',

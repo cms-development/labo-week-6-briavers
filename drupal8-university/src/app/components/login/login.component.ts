@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
 
              localStorage.setItem("token", response.data.access_token)
              localStorage.setItem("refresh_token", response.data.refresh_token)
-             that.router.navigateByUrl('/backOffice')
+             that.router.navigateByUrl('/students')
            } catch(error){
               console.log(error)
            }

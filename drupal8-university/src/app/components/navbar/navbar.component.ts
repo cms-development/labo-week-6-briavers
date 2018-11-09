@@ -17,10 +17,11 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.loggedIn = localStorage.getItem('token')? true : false
+    localStorage.getItem('token') ? console.log('') : this.router.navigateByUrl('/login')
   }
   logout(event: MouseEvent) {
     event.preventDefault();
     localStorage.removeItem('token');
-    this.router.navigateByUrl('/home')
+    this.router.navigateByUrl('/login')
   }
 }
