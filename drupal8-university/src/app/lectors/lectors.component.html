@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <h2>All lectors</h2>
+    </div>
+
+
+    <div class="row" *ngIf="lectors.data">
+      <table class="table table-hover">
+        <tr>
+          <th scope="col"> Name </th>
+          <th scope="col"> First Name </th>
+          <th scope="col"> created at </th>
+          <th scope="col"> courses </th>
+        </tr>
+        <tr *ngFor="let lector of lectors.data">
+          <td> {{ lector.attributes.name }}</td>
+          <td>{{ lector.attributes.field_fist_name|slice:0:150 }}</td>
+          <td> {{ toReadableTime(lector.attributes.created) }} </td>
+          <td>
+            <ul>
+              <li *ngFor="let course of lector.relationships.field_courses.data">{{getCoure(course.id)}}</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+
+
+
+  <div *ngIf="!lectors">
+    <h1> there was a huge error</h1>
+    <em>or just no lectors yet, please wait until te request is completed</em>
+  </div>
+</div>

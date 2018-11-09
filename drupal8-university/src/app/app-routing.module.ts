@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from "./components/home/home.component";
-import { ArticleShowComponent } from "./components/article-show/article-show.component";
 import { LoginComponent } from './components/login/login.component';
 import { BackOfficeComponent } from './components/back-office/back-office.component';
 import { EditComponent } from './components/edit/edit.component';
+import { CoursesComponent } from './courses/courses.component';
+import { LectorsComponent } from './lectors/lectors.component';
+import { CreateComponent as StudentCreateComponent }  from "./students/create/create.component";
+
 
 const routes: Routes = [
   {
@@ -21,10 +24,6 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'article/:id',
-    component: ArticleShowComponent,
-  },
-  {
     path: 'backOffice',
     component: BackOfficeComponent,
   },
@@ -32,7 +31,22 @@ const routes: Routes = [
     path: 'edit/:id',
     component: EditComponent,
   },
-
+  {
+    path: 'courses',
+    component: CoursesComponent,
+  },
+  {
+    path: 'lectors',
+    component: LectorsComponent,
+  },
+  {
+    path: 'students',
+    component: HomeComponent,
+  },
+  {
+    path: 'student/create',
+    component: StudentCreateComponent,
+  },
 ];
 
 @NgModule({

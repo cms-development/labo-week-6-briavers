@@ -13,7 +13,17 @@
 
 
         <li class="nav-item">
-          <a class="nav-link" href="/">Home </a>
+          <a class="nav-link" href="/"> Students  </a>
+        </li>
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/courses"> courses  </a>
+        </li>
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/lectors"> lectors  </a>
         </li>
         
         <li class="nav-item">
@@ -24,6 +34,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/backOffice" *ngIf="loggedIn"> backoffice</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/student/create" *ngIf="loggedIn"> create student</a>
         </li>
 
       </ul>

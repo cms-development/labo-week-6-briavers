@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <h2>All courses</h2>
+    </div>
+
+
+    <div class="row" *ngIf="courses.data">
+      <table class="table table-hover">
+        <tr>
+          <th scope="col"> Name </th>
+          <th scope="col"> Created at </th>
+          <th scope="col"> Students </th>
+          <th scope="col"> Lector </th>
+        </tr>
+        <tr *ngFor="let course of courses.data">
+          <td> {{ course.attributes.name }}</td>
+          <td> {{ toReadableTime(course.attributes.created) }} </td>
+          <td>
+            <ul>
+              <li *ngFor="let student of course.relationships.field_students.data">{{getStudent(student.id)}}</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+<li>{{getLector(course.relationships.field_instructor.data.id)}}</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+
+
+
+  <div *ngIf="!courses">
+    <h1> there was a huge error</h1>
+    <em>or just no courses yet, please wait until te request is completed</em>
+  </div>
+</div>

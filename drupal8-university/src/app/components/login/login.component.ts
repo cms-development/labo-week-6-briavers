@@ -4,6 +4,7 @@ import { HttpCallService } from 'src/app/services/http-call.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication-service.service';
 import { first } from 'rxjs/operators';
+import Axios, { AxiosResponse } from 'axios';
 
 @Component({
   selector: 'app-login',
@@ -34,27 +35,47 @@ export class LoginComponent implements OnInit {
   }
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
+   public responseN = {
+     access_token : '',
+     refresh_token : ''
 
+  }
+    
     onSubmit() {
-      this.httpCall.login(this.f.username.value, this.f.password.value).subscribe(
-        data => this.handleResponse(data),
-        error => this.handleError(error)
+      
+   
+    let that = this;
+    let data = {
+      "grant_type": 'password',
+      "client_id": 'dca795dc-cfdf-4f3b-8d8e-98dfe2ceebbd',
+      "client_secret": 'secret',
+      "username": this.f.username.value,
+      'password': this.f.password.value
+    }
+    const myFormData = this.getFormData(data);
 
-      );
+      Axios.post('http://localhost:8088/oauth/token',myFormData)
+        .then(function (response) {
+          try{
+
+             localStorage.setItem("token", response.data.access_token)
+             localStorage.setItem("refresh_token", response.data.refresh_token)
+             that.router.navigateByUrl('/backOffice')
+           } catch(error){
+              console.log(error)
+           }
+        })
+
+        .catch(function (error) {
+          console.log('this is the error', error)
+        });
     }
 
-    handleResponse(data){
-      console.log(data)
-      localStorage.setItem("token" , data.access_token)
-      localStorage.setItem("refresh_token", data.refresh_token)
-      this.router.navigateByUrl('/backOffice')
-    }
-
-
-    handleError(error) {
-      console.log('this is the error', error.error)
-      this.error = error.error.error;
-    }
+  getFormData(object) {
+    const formData = new FormData();
+    Object.keys(object).forEach(key => formData.append(key, object[key]));
+    return formData;
+  }
 
 
 
